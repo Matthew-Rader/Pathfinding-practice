@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class PathFinding : MonoBehaviour
 {
-	public enum PathFindingAlgo { BFS, GBFS, A_STAR};
-	public PathFindingAlgo algoToUse = PathFindingAlgo.BFS;
+	public enum PathFindingAlgoSelect { BFS, GBFS, A_STAR};
+	public PathFindingAlgoSelect algoToUse = PathFindingAlgoSelect.BFS;
+
+	// Search Algorithms
+	Dictionary<PathFindingAlgoSelect, PathFinding_Algo> algorithmReferences = new Dictionary<PathFindingAlgoSelect, PathFinding_Algo>();
 
 	public PathFinding_Heuristics heuristic = new PathFinding_Heuristics();
 
@@ -13,11 +16,8 @@ public class PathFinding : MonoBehaviour
 	public Transform goalPosition;
 	public Grid nodeGrid;
 
-	[HideInInspector]public List<Node> path = new List<Node>();
-
-	// Search Algorithms
-	Breadth_FirstSearch bfs = new Breadth_FirstSearch();
-	Best_FirstSearch gbfs = new Best_FirstSearch();
+	[HideInInspector] public Dictionary<Node, Node_Data> nodeData = new Dictionary<Node, Node_Data>();
+	[HideInInspector] public List<Node> path = new List<Node>();
 
 	public float updateDelay = 0.5f;
 	bool updatePath = true;
@@ -25,6 +25,9 @@ public class PathFinding : MonoBehaviour
 	private void Start ()
 	{
 		heuristic.UpdateHeuristic();
+
+		algorithmReferences[PathFindingAlgoSelect.BFS] = new Breadth_FirstSearch();
+		algorithmReferences[PathFindingAlgoSelect.GBFS] = new Best_FirstSearch();
 	}
 
 	private void Update ()
@@ -33,18 +36,9 @@ public class PathFinding : MonoBehaviour
 		{
 			Node startNode = nodeGrid.NodeFromWorldPoint(startPosition.position);
 			Node goalNode = nodeGrid.NodeFromWorldPoint(goalPosition.position);
-			nodeGrid.ResetNodes();
+			nodeData.Clear();
 
-			switch (algoToUse)
-			{
-				case (PathFindingAlgo.BFS):
-					bfs.FindPath(startNode, goalNode, heuristic);
-					break;
-
-				case (PathFindingAlgo.GBFS):
-					gbfs.FindPath(startNode, goalNode, heuristic);
-					break;
-			}
+			algorithmReferences[algoToUse].FindPath(startNode, goalNode, heuristic, ref nodeData);
 
 			ReversePath();
 
@@ -64,7 +58,7 @@ public class PathFinding : MonoBehaviour
 		while (curNode != startNode)
 		{
 			path.Add(curNode);
-			curNode = curNode.parentNode;
+			curNode = nodeData[curNode].parentNode;
 		}
 
 		path.Add(startNode);

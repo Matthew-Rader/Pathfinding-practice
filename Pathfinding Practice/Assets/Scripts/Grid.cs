@@ -98,20 +98,6 @@ public class Grid : MonoBehaviour
 		return grid[x, y];
 	}
 
-	public void ResetNodes ()
-	{
-		for (int x = 0; x < gridSizeX; ++x)
-		{
-			for (int y = 0; y < gridSizeY; ++y)
-			{
-				grid[x, y].parentNode = null;
-				grid[x, y].weight = 0;
-				grid[x, y].inOpenSet = false;
-				grid[x, y].inClosedSet = false;
-			}
-		}
-	}
-
 	private void OnDrawGizmos () 
     {
 		Handles.DrawWireCube(transform.position, new Vector3(gridSize.x, 1, gridSize.y));
@@ -122,9 +108,12 @@ public class Grid : MonoBehaviour
 			{
 				Handles.color = (n.walkable) ? Color.white : Color.grey;
 
-				if (n.parentNode != null)
+				if (pf.nodeData.ContainsKey(n))
 				{
-					Handles.color = new Color(71.0f/255.0f, 92.0f/255.0f, 255.0f/255.0f, 1.0f);
+					if (pf.nodeData[n].parentNode != null)
+					{
+						Handles.color = new Color(71.0f / 255.0f, 92.0f / 255.0f, 255.0f / 255.0f, 1.0f);
+					}
 				}
 
 				if (pf.path != null)
@@ -146,18 +135,21 @@ public class Grid : MonoBehaviour
 
 				Handles.CubeCap(0, n.position, Quaternion.identity, nodeDiameter - 0.1f);
 
-				if (n.walkable && n.weight > 0 && displayWeight)
+				if (pf.nodeData.ContainsKey(n))
 				{
-					GUIStyle labelStyle = new GUIStyle(GUI.skin.label)
+					if (n.walkable && pf.nodeData[n].weight > 0 && displayWeight)
 					{
-						alignment = TextAnchor.MiddleCenter,
-						fontSize = 14,
-						fontStyle = FontStyle.Bold
-					};
+						GUIStyle labelStyle = new GUIStyle(GUI.skin.label)
+						{
+							alignment = TextAnchor.MiddleCenter,
+							fontSize = 14,
+							fontStyle = FontStyle.Bold
+						};
 
-					GUI.color = Color.black;
+						GUI.color = Color.black;
 
-					Handles.Label(new Vector3(n.position.x - 0.1f, 0.0f, n.position.z + 0.25f), n.weight.ToString(), labelStyle);
+						Handles.Label(new Vector3(n.position.x - 0.1f, 0.0f, n.position.z + 0.25f), pf.nodeData[n].weight.ToString(), labelStyle);
+					}
 				}
 			}
 		}

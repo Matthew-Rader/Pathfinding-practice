@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Breadth_FirstSearch
+public class Breadth_FirstSearch : PathFinding_Algo
 {
-	public bool FindPath (Node startNode, Node goalNode, PathFinding_Heuristics heursiticFunction)
+	override public bool FindPath (Node startNode, Node goalNode, PathFinding_Heuristics heursiticFunction, ref Dictionary<Node, Node_Data> nodeData)
 	{
 		bool pathFound = false;
 
@@ -24,11 +24,14 @@ public class Breadth_FirstSearch
 
 			foreach (Node node in curNode.adjacentNodes)
 			{
-				Node parent = node.parentNode;
+				if (!nodeData.ContainsKey(node))
+					nodeData[node] = new Node_Data();
+
+				Node parent = nodeData[node].parentNode;
 
 				if (parent == null && node != startNode)
 				{
-					node.parentNode = curNode;
+					nodeData[node].parentNode = curNode;
 					nodeQueue.Enqueue(node);
 				}
 			}

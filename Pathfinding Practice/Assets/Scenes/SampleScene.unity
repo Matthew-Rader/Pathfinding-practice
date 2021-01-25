@@ -807,7 +807,7 @@ MonoBehaviour:
     m_Bits: 256
   gridSize: {x: 30, y: 30}
   nodeRadius: 0.5
-  displayWeight: 1
+  displayWeight: 0
 --- !u!4 &1294744436
 Transform:
   m_ObjectHideFlags: 0
