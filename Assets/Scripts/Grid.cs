@@ -10,6 +10,10 @@ public class Grid : MonoBehaviour
 
 	// The size of our grid in world units
     public Vector2 gridSize;
+	public int MaxGridSize
+	{
+		get { return Mathf.RoundToInt(gridSizeX * gridSizeY); }
+	}
 
     public float nodeRadius;
     Node[,] grid;
@@ -137,7 +141,7 @@ public class Grid : MonoBehaviour
 
 				if (pf.nodeData.ContainsKey(n))
 				{
-					if (n.walkable && pf.nodeData[n].weight > 0 && displayWeight)
+					if (n.walkable && pf.nodeData[n].fCost > 0 && displayWeight)
 					{
 						GUIStyle labelStyle = new GUIStyle(GUI.skin.label)
 						{
@@ -148,7 +152,7 @@ public class Grid : MonoBehaviour
 
 						GUI.color = Color.black;
 
-						Handles.Label(new Vector3(n.position.x - 0.1f, 0.0f, n.position.z + 0.25f), pf.nodeData[n].weight.ToString(), labelStyle);
+						Handles.Label(new Vector3(n.position.x - 0.1f, 0.0f, n.position.z + 0.25f), pf.nodeData[n].fCost.ToString(), labelStyle);
 					}
 				}
 			}

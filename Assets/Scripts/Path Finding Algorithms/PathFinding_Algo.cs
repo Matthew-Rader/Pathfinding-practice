@@ -4,18 +4,18 @@ using UnityEngine;
 
 public abstract class PathFinding_Algo
 {
-	public abstract bool FindPath (Node startNode, Node goalNode, PathFinding_Heuristics heursiticFunction, ref Dictionary<Node, Node_Data> nodeData);
+	public abstract bool FindPath (Node startNode, Node goalNode, PathFinding_Heuristics heursiticFunction, ref Dictionary<Node, Node_Data> nodeData, int maxGridSize);
 
 	protected virtual int FindNodeWithMinWeight (ref List<Node> set, ref Dictionary<Node, Node_Data> nodeData)
 	{
-		float minWeightFound = nodeData[set[0]].weight;
+		float minWeightFound = nodeData[set[0]].fCost;
 		int nodeIndexWithMinWeight = 0;
 
 		for (int i = 1; i < set.Count; ++i)
 		{
-			if (nodeData[set[i]].weight < minWeightFound)
+			if (nodeData[set[i]].fCost < minWeightFound)
 			{
-				minWeightFound = nodeData[set[i]].weight;
+				minWeightFound = nodeData[set[i]].fCost;
 				nodeIndexWithMinWeight = i;
 			}
 		}

@@ -28,6 +28,7 @@ public class PathFinding : MonoBehaviour
 
 		algorithmReferences[PathFindingAlgoSelect.BFS] = new Breadth_FirstSearch();
 		algorithmReferences[PathFindingAlgoSelect.GBFS] = new Best_FirstSearch();
+		algorithmReferences[PathFindingAlgoSelect.A_STAR] = new A_Star();
 	}
 
 	private void Update ()
@@ -38,7 +39,7 @@ public class PathFinding : MonoBehaviour
 			Node goalNode = nodeGrid.NodeFromWorldPoint(goalPosition.position);
 			nodeData.Clear();
 
-			algorithmReferences[algoToUse].FindPath(startNode, goalNode, heuristic, ref nodeData);
+			algorithmReferences[algoToUse].FindPath(startNode, goalNode, heuristic, ref nodeData, nodeGrid.MaxGridSize);
 
 			ReversePath();
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Best_FirstSearch : PathFinding_Algo
+public class A_Star : PathFinding_Algo
 {
 	override public bool FindPath (Node startNode, Node goalNode, PathFinding_Heuristics heursiticFunction, ref Dictionary<Node, Node_Data> nodeData, int maxGridSize)
 	{
@@ -27,14 +27,23 @@ public class Best_FirstSearch : PathFinding_Algo
 
 				if (!nodeData[node].inClosedSet)
 				{
-					nodeData[node].parentNode = curNode;
-
 					if (!nodeData[node].inOpenSet)
 					{
-						nodeData[node].inOpenSet = true;
+						nodeData[node].parentNode = curNode;
 						nodeData[node].hCost = heursiticFunction.GetHeuristicValue(node, goalNode);
-
+						nodeData[node].gCost = nodeData[curNode].gCost + heursiticFunction.GetHeuristicValue(curNode, node);
+						nodeData[node].inOpenSet = true;
 						openSet.Add(nodeData[node]);
+					}
+					else
+					{
+						float newG = nodeData[curNode].gCost + heursiticFunction.GetHeuristicValue(curNode, node);
+						if (newG < nodeData[node].gCost)
+						{
+							// Current Node should adopt this node
+							nodeData[node].parentNode = curNode;
+							nodeData[node].gCost = newG;
+						}
 					}
 				}
 			}

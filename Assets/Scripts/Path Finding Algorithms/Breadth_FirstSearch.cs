@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Breadth_FirstSearch : PathFinding_Algo
 {
-	override public bool FindPath (Node startNode, Node goalNode, PathFinding_Heuristics heursiticFunction, ref Dictionary<Node, Node_Data> nodeData)
+	override public bool FindPath (Node startNode, Node goalNode, PathFinding_Heuristics heursiticFunction, ref Dictionary<Node, Node_Data> nodeData, int maxGridSize)
 	{
 		bool pathFound = false;
 
@@ -25,7 +25,7 @@ public class Breadth_FirstSearch : PathFinding_Algo
 			foreach (Node node in curNode.adjacentNodes)
 			{
 				if (!nodeData.ContainsKey(node))
-					nodeData[node] = new Node_Data();
+					nodeData[node] = new Node_Data(node);
 
 				Node parent = nodeData[node].parentNode;
 
