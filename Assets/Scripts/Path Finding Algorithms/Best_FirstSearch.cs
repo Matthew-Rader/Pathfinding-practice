@@ -32,7 +32,7 @@ public class Best_FirstSearch : PathFinding_Algo
 					if (!nodeData[node].inOpenSet)
 					{
 						nodeData[node].inOpenSet = true;
-						nodeData[node].hCost = heursiticFunction.GetHeuristicValue(node, goalNode);
+						nodeData[node].hCost = heursiticFunction.GetHCost(node, goalNode);
 
 						openSet.Add(nodeData[node]);
 					}

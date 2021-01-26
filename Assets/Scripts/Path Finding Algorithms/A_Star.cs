@@ -30,14 +30,14 @@ public class A_Star : PathFinding_Algo
 					if (!nodeData[node].inOpenSet)
 					{
 						nodeData[node].parentNode = curNode;
-						nodeData[node].hCost = heursiticFunction.GetHeuristicValue(node, goalNode);
-						nodeData[node].gCost = nodeData[curNode].gCost + heursiticFunction.GetHeuristicValue(curNode, node);
+						nodeData[node].hCost = heursiticFunction.GetHCost(node, goalNode);
+						nodeData[node].gCost = nodeData[curNode].gCost + heursiticFunction.GetHCost(curNode, node);
 						nodeData[node].inOpenSet = true;
 						openSet.Add(nodeData[node]);
 					}
 					else
 					{
-						float newG = nodeData[curNode].gCost + heursiticFunction.GetHeuristicValue(curNode, node);
+						float newG = nodeData[curNode].gCost + heursiticFunction.GetHCost(curNode, node);
 						if (newG < nodeData[node].gCost)
 						{
 							// Current Node should adopt this node

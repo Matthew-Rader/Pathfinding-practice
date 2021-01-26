@@ -174,7 +174,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 87018871}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -253,7 +253,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 270009808}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -360,7 +360,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 345002810}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -545,7 +545,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 954314742}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -638,7 +638,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1188415080}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -696,7 +696,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!64 &1263217343
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -781,7 +781,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1294744436}
-  - component: {fileID: 1294744435}
   - component: {fileID: 1294744437}
   m_Layer: 0
   m_Name: PathFinding
@@ -790,24 +789,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1294744435
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1294744434}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 170bfbf9885003c4583ce4e3b96cf852, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unwalkableLayers:
-    serializedVersion: 2
-    m_Bits: 256
-  gridSize: {x: 30, y: 30}
-  nodeRadius: 0.5
-  displayWeight: 0
 --- !u!4 &1294744436
 Transform:
   m_ObjectHideFlags: 0
@@ -834,12 +815,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6d71035ab8bfc94da654de867b2e0b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeGraph:
+    unwalkableLayers:
+      serializedVersion: 2
+      m_Bits: 256
+    gridSize: {x: 30, y: 30}
+    gridOriginPosition: {x: 0, y: 0, z: 0}
+    nodeRadius: 0.5
+    displayWeight: 0
   algoToUse: 1
   heuristic:
     heursitic: 0
   startPosition: {fileID: 270009812}
   goalPosition: {fileID: 1850326935}
-  nodeGrid: {fileID: 1294744435}
   updateDelay: 0
 --- !u!1 &1349113155
 GameObject:
@@ -929,7 +917,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1623977788}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1091,7 +1079,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1850326931}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
