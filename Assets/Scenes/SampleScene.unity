@@ -226,6 +226,7 @@ GameObject:
   - component: {fileID: 270009811}
   - component: {fileID: 270009810}
   - component: {fileID: 270009809}
+  - component: {fileID: 270009813}
   m_Layer: 0
   m_Name: Start
   m_TagString: Untagged
@@ -307,6 +308,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &270009813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270009808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38756fbe7a89d0f4a9933da086c97549, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startPosition: {fileID: 270009812}
+  goalPosition: {fileID: 1850326935}
+  updateDelay: 0
 --- !u!1 &345002810
 GameObject:
   m_ObjectHideFlags: 0
@@ -820,15 +836,17 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 256
     gridSize: {x: 30, y: 30}
+    gridSizeX: 0
+    gridSizeY: 0
     gridOriginPosition: {x: 0, y: 0, z: 0}
     nodeRadius: 0.5
+    nodeDiameter: 0
+    allowDiagonalMovement: 1
+    dontCutCorners: 0
     displayWeight: 0
-  algoToUse: 1
+  algoToUse: 2
   heuristic:
-    heursitic: 0
-  startPosition: {fileID: 270009812}
-  goalPosition: {fileID: 1850326935}
-  updateDelay: 0
+    heuristic: 0
 --- !u!1 &1349113155
 GameObject:
   m_ObjectHideFlags: 0

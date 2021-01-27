@@ -5,6 +5,10 @@ using UnityEditor;
 
 public class PathFinding : MonoBehaviour
 {
+	//Singleton reference
+	private static PathFinding _instance;
+	public static PathFinding Instance { get { return _instance; } }
+
 	[Header ("Graph Properties")]
 	[Tooltip ("Properties representing the graph our nodes exist in")]
 	public Grid nodeGraph = new Grid();
@@ -19,14 +23,17 @@ public class PathFinding : MonoBehaviour
 
 	public PathFinding_Heuristics heuristic = new PathFinding_Heuristics();
 
-	public Transform startPosition;
-	public Transform goalPosition;
-
-	[HideInInspector] public Dictionary<Node, Node_Data> nodeData = new Dictionary<Node, Node_Data>();
-	[HideInInspector] public List<Node> path = new List<Node>();
-
-	public float updateDelay = 0.5f;
-	bool updatePath = true;
+	private void Awake ()
+	{
+		if (_instance != null && _instance != this)
+		{
+			Destroy(this.gameObject);
+		}
+		else
+		{
+			_instance = this;
+		}
+	}
 
 	private void Start ()
 	{
@@ -37,101 +44,68 @@ public class PathFinding : MonoBehaviour
 		algorithmReferences[PathFindingAlgoSelect.A_STAR] = new A_Star();
 	}
 
-	private void Update ()
+	public void FindPath (Transform start, Transform goal, ref Dictionary<Node, Node_Data> nodeData)
 	{
-		if (updatePath)
-		{
-			Node startNode = nodeGraph.NodeFromWorldPoint(startPosition.position);
-			Node goalNode = nodeGraph.NodeFromWorldPoint(goalPosition.position);
-			nodeData.Clear();
+		Node startNode = nodeGraph.NodeFromWorldPoint(start.position);
+		Node goalNode = nodeGraph.NodeFromWorldPoint(goal.position);
 
-			algorithmReferences[algoToUse].FindPath(startNode, goalNode, heuristic, ref nodeData, nodeGraph.MaxGridSize);
-
-			ReversePath();
-
-			StartCoroutine(UpdateDelay());
-		}
+		algorithmReferences[algoToUse].FindPath(startNode, goalNode, heuristic, ref nodeData, nodeGraph.MaxGridSize);
 	}
 
-	void ReversePath ()
-	{
-		path.Clear();
+	//private void OnDrawGizmos ()
+	//{
+	//	Handles.DrawWireCube(transform.position, new Vector3(nodeGraph.gridSize.x, 1, nodeGraph.gridSize.y));
 
-		Node goalNode = nodeGraph.NodeFromWorldPoint(goalPosition.position);
-		Node startNode = nodeGraph.NodeFromWorldPoint(startPosition.position);
+	//	if (nodeGraph.grid != null)
+	//	{
+	//		foreach (Node n in nodeGraph.grid)
+	//		{
+	//			Handles.color = (n.walkable) ? Color.white : Color.grey;
 
-		Node curNode = goalNode;
+	//			if (nodeData.ContainsKey(n))
+	//			{
+	//				if (nodeData[n].parentNode != null)
+	//				{
+	//					Handles.color = new Color(71.0f / 255.0f, 92.0f / 255.0f, 255.0f / 255.0f, 1.0f);
+	//				}
+	//			}
 
-		while (curNode != startNode)
-		{
-			path.Add(curNode);
-			curNode = nodeData[curNode].parentNode;
-		}
+	//			if (path != null)
+	//			{
+	//				if (path.Contains(n))
+	//				{
+	//					Handles.color = Color.yellow;
+	//				}
+	//			}
 
-		path.Add(startNode);
-	}
+	//			if (nodeGraph.NodeFromWorldPoint(startPosition.position) == n)
+	//			{
+	//				Handles.color = Color.green;
+	//			}
+	//			else if (nodeGraph.NodeFromWorldPoint(goalPosition.position) == n)
+	//			{
+	//				Handles.color = Color.red;
+	//			}
 
-	IEnumerator UpdateDelay ()
-	{
-		updatePath = false;
-		yield return new WaitForSeconds(updateDelay);
-		updatePath = true;
-	}
+	//			Handles.CubeCap(0, n.position, Quaternion.identity, nodeGraph.nodeDiameter - 0.1f);
 
-	private void OnDrawGizmos ()
-	{
-		Handles.DrawWireCube(transform.position, new Vector3(nodeGraph.gridSize.x, 1, nodeGraph.gridSize.y));
+	//			if (nodeData.ContainsKey(n))
+	//			{
+	//				if (n.walkable && nodeData[n].fCost > 0 && nodeGraph.displayWeight)
+	//				{
+	//					GUIStyle labelStyle = new GUIStyle(GUI.skin.label)
+	//					{
+	//						alignment = TextAnchor.MiddleCenter,
+	//						fontSize = 14,
+	//						fontStyle = FontStyle.Bold
+	//					};
 
-		if (nodeGraph.grid != null)
-		{
-			foreach (Node n in nodeGraph.grid)
-			{
-				Handles.color = (n.walkable) ? Color.white : Color.grey;
+	//					GUI.color = Color.black;
 
-				if (nodeData.ContainsKey(n))
-				{
-					if (nodeData[n].parentNode != null)
-					{
-						Handles.color = new Color(71.0f / 255.0f, 92.0f / 255.0f, 255.0f / 255.0f, 1.0f);
-					}
-				}
-
-				if (path != null)
-				{
-					if (path.Contains(n))
-					{
-						Handles.color = Color.yellow;
-					}
-				}
-
-				if (nodeGraph.NodeFromWorldPoint(startPosition.position) == n)
-				{
-					Handles.color = Color.green;
-				}
-				else if (nodeGraph.NodeFromWorldPoint(goalPosition.position) == n)
-				{
-					Handles.color = Color.red;
-				}
-
-				Handles.CubeCap(0, n.position, Quaternion.identity, nodeGraph.nodeDiameter - 0.1f);
-
-				if (nodeData.ContainsKey(n))
-				{
-					if (n.walkable && nodeData[n].fCost > 0 && nodeGraph.displayWeight)
-					{
-						GUIStyle labelStyle = new GUIStyle(GUI.skin.label)
-						{
-							alignment = TextAnchor.MiddleCenter,
-							fontSize = 14,
-							fontStyle = FontStyle.Bold
-						};
-
-						GUI.color = Color.black;
-
-						Handles.Label(new Vector3(n.position.x - 0.1f, 0.0f, n.position.z + 0.25f), nodeData[n].hCost.ToString(), labelStyle);
-					}
-				}
-			}
-		}
-	}
+	//					Handles.Label(new Vector3(n.position.x - 0.1f, 0.0f, n.position.z + 0.25f), nodeData[n].hCost.ToString(), labelStyle);
+	//				}
+	//			}
+	//		}
+	//	}
+	//}
 }
