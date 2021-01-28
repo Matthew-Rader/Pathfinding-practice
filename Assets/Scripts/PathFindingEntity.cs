@@ -13,7 +13,7 @@ public class PathFindingEntity : MonoBehaviour
 	[HideInInspector] public List<Node> path = new List<Node>();
 
 	public float updateDelay = 0.5f;
-	bool updatePath = true;
+	private float updateDelayTimer = 0.0f;
 
 	private void Start ()
 	{
@@ -22,7 +22,7 @@ public class PathFindingEntity : MonoBehaviour
 
 	private void Update ()
 	{
-		if (updatePath)
+		if (Time.time > updateDelayTimer)
 		{
 			nodeData.Clear();
 
@@ -30,7 +30,7 @@ public class PathFindingEntity : MonoBehaviour
 
 			ReversePath();
 
-			StartCoroutine(UpdateDelay());
+			updateDelayTimer = Time.time + updateDelay;
 		}
 	}
 
@@ -50,13 +50,6 @@ public class PathFindingEntity : MonoBehaviour
 		}
 
 		path.Add(startNode);
-	}
-
-	IEnumerator UpdateDelay ()
-	{
-		updatePath = false;
-		yield return new WaitForSeconds(updateDelay);
-		updatePath = true;
 	}
 
 	private void OnDrawGizmos ()

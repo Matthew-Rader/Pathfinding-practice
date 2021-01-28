@@ -29,6 +29,13 @@ public class Node_Data : IHeapItem<Node_Data>
 		inOpenSet = false;
 	}
 
+	public void Reset ()
+	{
+		parentNode = null;
+		inClosedSet = false;
+		inOpenSet = false;
+	}
+
 	public int HeapIndex
 	{
 		get

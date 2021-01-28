@@ -8,7 +8,14 @@ public class A_Star : PathFinding_Algo
 	{
 		BinaryHeap<Node_Data> openSet = new BinaryHeap<Node_Data>(maxGridSize);
 
-		nodeData[startNode] = new Node_Data(startNode);
+		if (nodeData.ContainsKey(startNode))
+			nodeData[startNode].Reset();
+		else
+			nodeData[startNode] = new Node_Data(startNode);
+
+		foreach (var nd in nodeData.Values)
+			nd.Reset();
+
 		openSet.Add(nodeData[startNode]);
 
 		Node curNode;

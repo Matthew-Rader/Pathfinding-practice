@@ -27,10 +27,10 @@ public class Grid
 
 	[Header("Adjacency Modifiers")]
 	public bool allowDiagonalMovement = false;
-	public bool dontCutCorners = false;
+	public bool cutCorners = false;
 
-	[Header ("Debugging Variables")]
-	public bool displayWeight = false;
+	[Header("Rate at which the grid will rescan to create graph")]
+	public float rescanRate = 0.1f;
 
 	public void InitializeGrid ()
 	{
@@ -38,22 +38,32 @@ public class Grid
 		gridSizeX = Mathf.RoundToInt(gridSize.x / nodeDiameter);
 		gridSizeY = Mathf.RoundToInt(gridSize.y / nodeDiameter);
 
-		CreateGrid();
+		grid = new Node[gridSizeX, gridSizeY];
+
+		ScanGrid();
 	}
 
-	void CreateGrid ()
+	public void ScanGrid ()
 	{
-		grid = new Node[gridSizeX, gridSizeY];
 		Vector3 worldBottomLeft = gridOriginPosition - Vector3.right * gridSize.x / 2 - Vector3.forward * gridSize.y / 2;
+		Node curNode;
 
 		// Generate all the grid nodes and determine if they are walkable
 		for (int x = 0; x < gridSizeX; ++x)
 		{
 			for (int y = 0; y < gridSizeY; ++y)
 			{
-				Vector3 nodePosition = worldBottomLeft + Vector3.right * (x * nodeDiameter + nodeRadius) + Vector3.forward * (y * nodeDiameter + nodeRadius);
+				curNode = grid[x, y];
+				Vector3 nodePosition = curNode != null ? 
+											curNode.position : 
+											(worldBottomLeft + Vector3.right * (x * nodeDiameter + nodeRadius) + Vector3.forward * (y * nodeDiameter + nodeRadius));
+
 				bool walkable = !(Physics.CheckBox(nodePosition, new Vector3(nodeRadius, nodeRadius, nodeRadius), Quaternion.identity, unwalkableLayers));
-				grid[x, y] = new Node(walkable, nodePosition);
+
+				if (curNode == null)
+					grid[x, y] = new Node(walkable, nodePosition);
+				else
+					grid[x, y].Walkable = walkable;
 			}
 		}
 
@@ -63,31 +73,52 @@ public class Grid
 		{
 			for (int y = 0; y < gridSizeY; ++y)
 			{
-				Node curNode = grid[x, y];
+				bool foundLeft, foundRight, foundUp, foundDown;
+				foundLeft = foundRight = foundUp = foundDown = false;
+				curNode = grid[x, y];
+
+				if (curNode.adjacentNodes.Count > 0)
+					curNode.adjacentNodes.Clear();
 
 				#region Find cardinal direction adjacency
+				// Left
 				if (y != 0)
 				{
-					if (grid[x, y-1].walkable)
+					if (grid[x, y - 1].Walkable)
+					{
 						curNode.adjacentNodes.Add(grid[x, y - 1]);
+						foundLeft = true;
+					}
 				}
 
+				// Right
 				if (y <= gridSizeY - 2)
 				{
-					if (grid[x, y + 1].walkable)
+					if (grid[x, y + 1].Walkable)
+					{
 						curNode.adjacentNodes.Add(grid[x, y + 1]);
+						foundRight = true;
+					}
 				}
 
+				// Down
 				if (x != 0)
 				{
-					if (grid[x - 1, y].walkable)
+					if (grid[x - 1, y].Walkable)
+					{
 						curNode.adjacentNodes.Add(grid[x - 1, y]);
+						foundDown = true;
+					}
 				}
 
+				// Up
 				if (x <= gridSizeX - 2)
 				{
-					if (grid[x + 1, y].walkable)
+					if (grid[x + 1, y].Walkable)
+					{
 						curNode.adjacentNodes.Add(grid[x + 1, y]);
+						foundUp = true;
+					}
 				}
 				#endregion
 
@@ -97,29 +128,34 @@ public class Grid
 					// Top Left
 					if (x + 1 <= gridSizeX - 2 && y - 1 >= 0)
 					{
-						if (grid[x + 1, y - 1].walkable)
-							curNode.adjacentNodes.Add(grid[x + 1, y - 1]);
+						if (grid[x + 1, y - 1].Walkable)
+							if (cutCorners || (foundLeft && foundUp))
+								curNode.adjacentNodes.Add(grid[x + 1, y - 1]);
+
 					}
 
 					// Top Right
 					if (x + 1 <= gridSizeX - 2 && y + 1 <= gridSizeY - 2)
 					{
-						if (grid[x + 1, y + 1].walkable)
-							curNode.adjacentNodes.Add(grid[x + 1, y + 1]);
+						if (grid[x + 1, y + 1].Walkable)
+							if (cutCorners || (foundRight && foundUp))
+								curNode.adjacentNodes.Add(grid[x + 1, y + 1]);
 					}
 
 					// Bottom Left
-					if (x - 1 >= 0  && y - 1 >= 0)
+					if (x - 1 >= 0 && y - 1 >= 0)
 					{
-						if (grid[x - 1, y - 1].walkable)
-							curNode.adjacentNodes.Add(grid[x - 1, y - 1]);
+						if (grid[x - 1, y - 1].Walkable)
+							if (cutCorners || (foundLeft && foundDown))
+								curNode.adjacentNodes.Add(grid[x - 1, y - 1]);
 					}
 
 					// Bottom Right
 					if (x - 1 >= 0 && y + 1 <= gridSizeY - 2)
 					{
-						if (grid[x - 1, y + 1].walkable)
-							curNode.adjacentNodes.Add(grid[x - 1, y + 1]);
+						if (grid[x - 1, y + 1].Walkable)
+							if (cutCorners || (foundRight && foundDown))
+								curNode.adjacentNodes.Add(grid[x - 1, y + 1]);
 					}
 				}
 				#endregion

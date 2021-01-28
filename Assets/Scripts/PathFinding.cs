@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using System.Threading;
 
 public class PathFinding : MonoBehaviour
 {
@@ -44,6 +45,11 @@ public class PathFinding : MonoBehaviour
 		algorithmReferences[PathFindingAlgoSelect.A_STAR] = new A_Star();
 	}
 
+	private void Update ()
+	{
+		nodeGraph.ScanGrid();
+	}
+
 	public void FindPath (Transform start, Transform goal, ref Dictionary<Node, Node_Data> nodeData)
 	{
 		Node startNode = nodeGraph.NodeFromWorldPoint(start.position);
@@ -52,60 +58,23 @@ public class PathFinding : MonoBehaviour
 		algorithmReferences[algoToUse].FindPath(startNode, goalNode, heuristic, ref nodeData, nodeGraph.MaxGridSize);
 	}
 
-	//private void OnDrawGizmos ()
-	//{
-	//	Handles.DrawWireCube(transform.position, new Vector3(nodeGraph.gridSize.x, 1, nodeGraph.gridSize.y));
+	public void FinishedFindingPath ()
+	{
 
-	//	if (nodeGraph.grid != null)
-	//	{
-	//		foreach (Node n in nodeGraph.grid)
-	//		{
-	//			Handles.color = (n.walkable) ? Color.white : Color.grey;
+	}
 
-	//			if (nodeData.ContainsKey(n))
-	//			{
-	//				if (nodeData[n].parentNode != null)
-	//				{
-	//					Handles.color = new Color(71.0f / 255.0f, 92.0f / 255.0f, 255.0f / 255.0f, 1.0f);
-	//				}
-	//			}
+	private void OnDrawGizmos ()
+	{
+		Gizmos.DrawWireCube(transform.position, new Vector3(nodeGraph.gridSize.x, 1, nodeGraph.gridSize.y));
 
-	//			if (path != null)
-	//			{
-	//				if (path.Contains(n))
-	//				{
-	//					Handles.color = Color.yellow;
-	//				}
-	//			}
+		if (nodeGraph.grid != null)
+		{
+			foreach (Node n in nodeGraph.grid)
+			{
+				Gizmos.color = (n.Walkable) ? Color.white : Color.grey;
 
-	//			if (nodeGraph.NodeFromWorldPoint(startPosition.position) == n)
-	//			{
-	//				Handles.color = Color.green;
-	//			}
-	//			else if (nodeGraph.NodeFromWorldPoint(goalPosition.position) == n)
-	//			{
-	//				Handles.color = Color.red;
-	//			}
-
-	//			Handles.CubeCap(0, n.position, Quaternion.identity, nodeGraph.nodeDiameter - 0.1f);
-
-	//			if (nodeData.ContainsKey(n))
-	//			{
-	//				if (n.walkable && nodeData[n].fCost > 0 && nodeGraph.displayWeight)
-	//				{
-	//					GUIStyle labelStyle = new GUIStyle(GUI.skin.label)
-	//					{
-	//						alignment = TextAnchor.MiddleCenter,
-	//						fontSize = 14,
-	//						fontStyle = FontStyle.Bold
-	//					};
-
-	//					GUI.color = Color.black;
-
-	//					Handles.Label(new Vector3(n.position.x - 0.1f, 0.0f, n.position.z + 0.25f), nodeData[n].hCost.ToString(), labelStyle);
-	//				}
-	//			}
-	//		}
-	//	}
-	//}
+				Gizmos.DrawCube(n.position, Vector3.one * (nodeGraph.nodeDiameter - 0.1f));
+			}
+		}
+	}
 }
