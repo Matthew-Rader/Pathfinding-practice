@@ -31,6 +31,7 @@ public class Grid
 
 	[Header("Rate at which the grid will rescan to create graph")]
 	public float rescanRate = 0.1f;
+	[HideInInspector] public float rescanTimer = 0.0f;
 
 	public void InitializeGrid ()
 	{

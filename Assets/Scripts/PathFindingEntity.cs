@@ -9,8 +9,9 @@ public class PathFindingEntity : MonoBehaviour
 	public Transform startPosition;
 	public Transform goalPosition;
 
-	[HideInInspector] public Dictionary<Node, Node_Data> nodeData = new Dictionary<Node, Node_Data>();
 	[HideInInspector] public List<Node> path = new List<Node>();
+	public bool waitingForPath = false;
+	public bool pathFound = false;
 
 	public float updateDelay = 0.5f;
 	private float updateDelayTimer = 0.0f;
@@ -22,42 +23,35 @@ public class PathFindingEntity : MonoBehaviour
 
 	private void Update ()
 	{
-		if (Time.time > updateDelayTimer)
+		if (!waitingForPath)
 		{
-			nodeData.Clear();
+			updateDelayTimer += Time.deltaTime;
 
-			_PathFinder.FindPath(startPosition, goalPosition, ref nodeData);
-
-			ReversePath();
-
-			updateDelayTimer = Time.time + updateDelay;
+			if (updateDelayTimer > updateDelay)
+			{
+				_PathFinder.RequestPath(startPosition, goalPosition, this);
+				waitingForPath = true;
+				updateDelayTimer = 0.0f;
+			}
 		}
 	}
 
-	void ReversePath ()
+	public void UpdatePathData (PathFinding_Request request)
 	{
-		path.Clear();
-
-		Node goalNode = _PathFinder.nodeGraph.NodeFromWorldPoint(goalPosition.position);
-		Node startNode = _PathFinder.nodeGraph.NodeFromWorldPoint(startPosition.position);
-
-		Node curNode = goalNode;
-
-		while (curNode != startNode)
-		{
-			path.Add(curNode);
-			curNode = nodeData[curNode].parentNode;
-		}
-
-		path.Add(startNode);
+		path = request.path;
+		pathFound = request.pathFound;
+		waitingForPath = false;
 	}
 
 	private void OnDrawGizmos ()
 	{
-		for( int i = 0; i < path.Count-1; ++i)
+		if (path != null)
 		{
-			Node curNode = path[i];
-			Gizmos.DrawLine(curNode.position, path[i + 1].position);
+			for (int i = 0; i < path.Count - 1; ++i)
+			{
+				Node curNode = path[i];
+				Gizmos.DrawLine(curNode.position, path[i + 1].position);
+			}
 		}
 	}
 }
