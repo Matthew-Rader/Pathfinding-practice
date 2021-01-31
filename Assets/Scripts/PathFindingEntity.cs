@@ -28,16 +28,16 @@ public class PathFindingEntity : MonoBehaviour
 			if (updateDelayTimer > updateDelay)
 			{
 				waitingForPath = true; 
-				PathFinding.RequestPath(startPosition, goalPosition, this);
+				PathFinding.RequestPath(startPosition, goalPosition, UpdatePathData);
 				updateDelayTimer = 0.0f;
 			}
 		}
 	}
 
-	public void UpdatePathData (PathFinding_Result results)
+	public void UpdatePathData (List<Node> _path, bool _pathFound)
 	{
-		path = results.path;
-		pathFound = results.pathFound;
+		path = _path;
+		pathFound = _pathFound;
 		waitingForPath = false;
 	}
 

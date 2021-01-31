@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using System;
 using System.Threading;
 
 public class PathFinding : MonoBehaviour
@@ -48,6 +49,7 @@ public class PathFinding : MonoBehaviour
 	#endregion
 
 	#region Debug Variables
+	[Header ("Debug Variables")]
 	public bool _DrawDebugData = false;
 	#endregion
 
@@ -112,11 +114,11 @@ public class PathFinding : MonoBehaviour
 	/// <param name="start">Start position Transform</param>
 	/// <param name="goal">Goal position Transform</param>
 	/// <param name="caller">Self reference to call back and update path data</param>
-	public static void RequestPath (Transform start, Transform goal, PathFindingEntity caller)
+	public static void RequestPath (Transform start, Transform goal, Action<List<Node>, bool> callBack)
 	{
 		Node startNode = _instance.nodeGraph.NodeFromWorldPoint(start.position);
 		Node goalNode = _instance.nodeGraph.NodeFromWorldPoint(goal.position);
-		PathFinding_Request newRequest = new PathFinding_Request(startNode, goalNode, caller);
+		PathFinding_Request newRequest = new PathFinding_Request(startNode, goalNode, callBack);
 		_instance.pathRequests.Enqueue(newRequest);
 	}
 
@@ -142,22 +144,21 @@ public class PathFinding : MonoBehaviour
 	private void FindPath(PathFinding_Request request)
 	{
 		bool foundPath = algorithmReferences[algoToUse].FindPath(request.start, request.goal, heuristic, ref request.nodeData, nodeGraph.MaxGridSize);
-
-		PathFinding_Result result = new PathFinding_Result(foundPath);
+		List<Node> path;
 
 		if (foundPath)
 		{
 			// If a path was found reverse it and return the request data
-			result.path = ReversePath(request);
-			result.path = SimplifyPath(result);
-			request.caller.UpdatePathData(result);
+			path = ReversePath(request);
+			path = SimplifyPath(path);
 		}
 		else
 		{
 			// If a path was not found return a null path
-			result.path = null;
-			request.caller.UpdatePathData(result);
+			path = null;
 		}
+
+		request.callBack(path, foundPath);
 
 		// Lock the PathFinding class instance and decrement the active threads count
 		lock (_instance)
@@ -166,8 +167,7 @@ public class PathFinding : MonoBehaviour
 		}
 	}
 
-
-	List<Node> ReversePath (PathFinding_Request pathFinding_Request)
+	List<Node> ReversePath (in PathFinding_Request pathFinding_Request)
 	{
 		List<Node> newPath = new List<Node>();
 
@@ -187,22 +187,21 @@ public class PathFinding : MonoBehaviour
 		return newPath;
 	}
 
-	List<Node> SimplifyPath (PathFinding_Result pathFinding_Result)
+	List<Node> SimplifyPath (in List<Node> originalPath)
 	{
-		List<Node> curPath = pathFinding_Result.path;
 		List<Node> simplifiedPath = new List<Node>();
 
 		Vector3 curNodePos;
 		Vector3 nextNodePos;
 
 		// Add the starting postiion node
-		simplifiedPath.Add(curPath[0]);
+		simplifiedPath.Add(originalPath[0]);
 
 		Vector2 previousMoveVec;
 
 		// Get the starting movement direction of the starting node to the first node in the path
-		curNodePos = curPath[0].position;
-		nextNodePos = curPath[1].position;
+		curNodePos = originalPath[0].position;
+		nextNodePos = originalPath[1].position;
 
 		previousMoveVec = new Vector2(nextNodePos.x - curNodePos.x,
 									  nextNodePos.z - curNodePos.z);
@@ -210,10 +209,10 @@ public class PathFinding : MonoBehaviour
 		// Normlize the vector because we only care about the direction
 		previousMoveVec.Normalize();
 
-		for (int i = 1; i < curPath.Count - 1; ++i)
+		for (int i = 1; i < originalPath.Count - 1; ++i)
 		{
-			curNodePos = curPath[i].position;
-			nextNodePos = curPath[i + 1].position;
+			curNodePos = originalPath[i].position;
+			nextNodePos = originalPath[i + 1].position;
 
 			Vector2 dir = new Vector2(nextNodePos.x - curNodePos.x,
 									  nextNodePos.z - curNodePos.z);
@@ -224,12 +223,12 @@ public class PathFinding : MonoBehaviour
 			if (dir != previousMoveVec)
 			{
 				previousMoveVec = dir;
-				simplifiedPath.Add(curPath[i]);
+				simplifiedPath.Add(originalPath[i]);
 			}
 		}
 
 		// Add the last node of the path since it is the goal
-		simplifiedPath.Add(curPath[curPath.Count - 1]);
+		simplifiedPath.Add(originalPath[originalPath.Count - 1]);
 
 		return simplifiedPath;
 	}
@@ -252,28 +251,17 @@ public class PathFinding : MonoBehaviour
 
 public struct PathFinding_Request
 {
-	public PathFindingEntity caller;
+	public Action<List<Node>, bool> callBack;
 	public Node start;
 	public Node goal;
 	public Dictionary<Node, Node_Data> nodeData;
 
-	public PathFinding_Request (Node _start, Node _goal, PathFindingEntity _caller)
+	public PathFinding_Request (Node _start, Node _goal, Action<List<Node>, bool> _callBack)
 	{
-		caller = _caller;
+		callBack = _callBack;
 		start = _start;
 		goal = _goal;
 		nodeData = new Dictionary<Node, Node_Data>();
 	}
 }
 
-public struct PathFinding_Result
-{
-	public bool pathFound;
-	public List<Node> path;
-
-	public PathFinding_Result (bool _pathFound)
-	{
-		pathFound = _pathFound;
-		path = null;
-	}
-}
