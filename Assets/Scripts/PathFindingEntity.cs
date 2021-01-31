@@ -4,21 +4,19 @@ using UnityEngine;
 
 public class PathFindingEntity : MonoBehaviour
 {
-	PathFinding _PathFinder;
-
-	public Transform startPosition;
+	[HideInInspector] public Transform startPosition;
 	public Transform goalPosition;
 
 	[HideInInspector] public List<Node> path = new List<Node>();
-	public bool waitingForPath = false;
-	public bool pathFound = false;
+	[HideInInspector] public bool pathFound = false;
 
+	[HideInInspector] public bool waitingForPath = false;
 	public float updateDelay = 0.5f;
 	private float updateDelayTimer = 0.0f;
 
 	private void Start ()
 	{
-		_PathFinder = PathFinding.Instance;
+		startPosition = GetComponent<Transform>();
 	}
 
 	private void Update ()
@@ -29,17 +27,17 @@ public class PathFindingEntity : MonoBehaviour
 
 			if (updateDelayTimer > updateDelay)
 			{
-				_PathFinder.RequestPath(startPosition, goalPosition, this);
-				waitingForPath = true;
+				waitingForPath = true; 
+				PathFinding.RequestPath(startPosition, goalPosition, this);
 				updateDelayTimer = 0.0f;
 			}
 		}
 	}
 
-	public void UpdatePathData (PathFinding_Request request)
+	public void UpdatePathData (PathFinding_Result results)
 	{
-		path = request.path;
-		pathFound = request.pathFound;
+		path = results.path;
+		pathFound = results.pathFound;
 		waitingForPath = false;
 	}
 
@@ -51,6 +49,7 @@ public class PathFindingEntity : MonoBehaviour
 			{
 				Node curNode = path[i];
 				Gizmos.DrawLine(curNode.position, path[i + 1].position);
+				Gizmos.DrawSphere(curNode.position, 0.25f);
 			}
 		}
 	}
