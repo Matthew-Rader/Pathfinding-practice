@@ -6,11 +6,34 @@ using System.Threading;
 
 public class PathFinding : MonoBehaviour
 {
-	//Singleton reference
+	#region Singleton reference
 	private static PathFinding _instance;
 	public static PathFinding Instance { get { return _instance; } }
+	#endregion
+
+	#region Node Graph Data
+	[Header ("Graph Properties")]
+	[Tooltip ("Properties representing the graph our nodes exist in")]
+	public Grid nodeGraph = new Grid();
+	#endregion
+
+	#region PathFinding Algorithm Data
+	public enum PathFindingAlgoSelect { BFS, GBFS, A_STAR};
+
+	[Header("PathFinding Algorithms")]
+	[Tooltip("The algorithm used to find a path")]
+	public PathFindingAlgoSelect algoToUse = PathFindingAlgoSelect.BFS;
+
+	// Dictionary used to call the selected pathfinding algorithm's FindPath function
+	Dictionary<PathFindingAlgoSelect, PathFinding_Algo> algorithmReferences = new Dictionary<PathFindingAlgoSelect, PathFinding_Algo>();
+
+	// Algorithm heuristic selection
+	public PathFinding_Heuristics heuristic = new PathFinding_Heuristics();
+	#endregion
 
 	#region Thread Control Variables
+	[Header ("Threading")]
+	[Tooltip ("The max number of threads allowed to be active at once")]
 	public int maxNumberOfThreads = 5;
 
 	// Counter to keep track of the number of active threads running
@@ -19,28 +42,18 @@ public class PathFinding : MonoBehaviour
 	private bool waitingToScanGrid = false;
 	#endregion
 
-	[Header ("Graph Properties")]
-	[Tooltip ("Properties representing the graph our nodes exist in")]
-	public Grid nodeGraph = new Grid();
-
-	public enum PathFindingAlgoSelect { BFS, GBFS, A_STAR};
-
-	[Header("Path-Finding Algorithms")]
-	[Tooltip("The algorithm used to find a path")]
-	public PathFindingAlgoSelect algoToUse = PathFindingAlgoSelect.BFS;
-
-	// Dictionary used to call the selected path finding algorithm's FindPath function
-	Dictionary<PathFindingAlgoSelect, PathFinding_Algo> algorithmReferences = new Dictionary<PathFindingAlgoSelect, PathFinding_Algo>();
-
-	public PathFinding_Heuristics heuristic = new PathFinding_Heuristics();
-
+	#region Local Private Variables
+	// FIFO way to control the rate of path finding threads being spun up
 	private Queue pathRequests = new Queue();
+	#endregion
 
-	// Debug variables
+	#region Debug Variables
 	public bool _DrawDebugData = false;
+	#endregion
 
 	private void Awake ()
 	{
+		// Establishing the singleton
 		if (_instance != null && _instance != this)
 		{
 			Destroy(this.gameObject);
@@ -50,8 +63,10 @@ public class PathFinding : MonoBehaviour
 			_instance = this;
 		}
 
+		// Initialize our Grid
 		nodeGraph.InitializeGrid();
 
+		// Initialize our algorithm selection dictionary
 		algorithmReferences[PathFindingAlgoSelect.BFS] = new Breadth_FirstSearch();
 		algorithmReferences[PathFindingAlgoSelect.GBFS] = new Best_FirstSearch();
 		algorithmReferences[PathFindingAlgoSelect.A_STAR] = new A_Star();
@@ -59,11 +74,14 @@ public class PathFinding : MonoBehaviour
 
 	private void Update ()
 	{
+		// If we aren't waiting to scan the grid, increment our timer for the next time we need to
 		if (!waitingToScanGrid)
 		{
 			nodeGraph.rescanTimer += Time.deltaTime;
+
 			if (nodeGraph.rescanTimer > nodeGraph.rescanRate)
 			{
+				// Flag that we would like to scan the grid
 				waitingToScanGrid = true;
 				nodeGraph.rescanTimer = 0.0f;
 			}
@@ -88,6 +106,12 @@ public class PathFinding : MonoBehaviour
 		}
 	}
 
+	/// <summary>
+	/// Create a pathfinding request from a start to a goal position. 
+	/// </summary>
+	/// <param name="start">Start position Transform</param>
+	/// <param name="goal">Goal position Transform</param>
+	/// <param name="caller">Self reference to call back and update path data</param>
 	public static void RequestPath (Transform start, Transform goal, PathFindingEntity caller)
 	{
 		Node startNode = _instance.nodeGraph.NodeFromWorldPoint(start.position);
@@ -96,12 +120,22 @@ public class PathFinding : MonoBehaviour
 		_instance.pathRequests.Enqueue(newRequest);
 	}
 
+	/// <summary>
+	/// Spin up a thread to find a path given PathFinding Request data
+	/// </summary>
+	/// <param name="request"></param>
 	private void StartPathFindingThread (PathFinding_Request request)
 	{
 		Thread pathFindingThread = new Thread(() => FindPath(request));
+
+		// Set the threads priority to low so it doesn't take resources from the main thread
 		pathFindingThread.Priority = System.Threading.ThreadPriority.Lowest;
+
+		// Tell the thread to run in the background
 		pathFindingThread.IsBackground = true;
+
 		pathFindingThread.Start();
+
 		_ActiveThreads++;
 	}
 
@@ -131,6 +165,7 @@ public class PathFinding : MonoBehaviour
 			_ActiveThreads--;
 		}
 	}
+
 
 	List<Node> ReversePath (PathFinding_Request pathFinding_Request)
 	{
