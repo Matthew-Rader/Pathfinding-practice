@@ -46,6 +46,7 @@ public class PathFinding : MonoBehaviour
 	#region Local Private Variables
 	// FIFO way to control the rate of path finding threads being spun up
 	private Queue pathRequests = new Queue();
+	private Queue pathRequesetResults = new Queue();
 	#endregion
 
 	#region Debug Variables
@@ -97,6 +98,7 @@ public class PathFinding : MonoBehaviour
 			waitingToScanGrid = false;
 		}
 
+		// Check if we have any requests to spin up finding a path for
 		if (pathRequests.Count > 0)
 		{
 			// Spin up a path finding thread if it's safe to do so and we haven't hit our max thread count
@@ -105,6 +107,13 @@ public class PathFinding : MonoBehaviour
 				StartPathFindingThread((PathFinding_Request)pathRequests.Dequeue());
 				//FindPath((PathFinding_Request)pathRequests.Dequeue());
 			}
+		}
+
+		// Check if we have any path results to call back to
+		if (pathRequesetResults.Count > 0)
+		{
+			PathFinding_Result result = (PathFinding_Result)pathRequesetResults.Dequeue();
+			result.callBack(result.path, result.foundPath);
 		}
 	}
 
@@ -148,8 +157,13 @@ public class PathFinding : MonoBehaviour
 
 		if (foundPath)
 		{
-			// If a path was found reverse it and return the request data
-			path = ReversePath(request);
+			// Build the found path list from Goal to Start
+			path = BuildPath(request);
+
+			// Reverse the found path to be from Start to Goal
+			path.Reverse();
+
+			// Simplify the path to take up less space and only track pivot points
 			path = SimplifyPath(path);
 		}
 		else
@@ -158,16 +172,22 @@ public class PathFinding : MonoBehaviour
 			path = null;
 		}
 
-		request.callBack(path, foundPath);
+		PathFinding_Result result = new PathFinding_Result(request.callBack, path, foundPath);
 
 		// Lock the PathFinding class instance and decrement the active threads count
 		lock (_instance)
 		{
 			_ActiveThreads--;
+			pathRequesetResults.Enqueue(result);
 		}
 	}
 
-	List<Node> ReversePath (in PathFinding_Request pathFinding_Request)
+	/// <summary>
+	/// Uses pathfinding nodeData to build the found path from Goal to Start
+	/// </summary>
+	/// <param name="pathFinding_Request"></param>
+	/// <returns>Returns found path from Goal to Start</returns>
+	List<Node> BuildPath (in PathFinding_Request pathFinding_Request)
 	{
 		List<Node> newPath = new List<Node>();
 
@@ -187,6 +207,11 @@ public class PathFinding : MonoBehaviour
 		return newPath;
 	}
 
+	/// <summary>
+	/// Takes a path and returns a simplified version of it. Nodes in the path will now represent pivot/turning points.
+	/// </summary>
+	/// <param name="originalPath"></param>
+	/// <returns> Simplified list of nodes </returns>
 	List<Node> SimplifyPath (in List<Node> originalPath)
 	{
 		List<Node> simplifiedPath = new List<Node>();
@@ -265,3 +290,16 @@ public struct PathFinding_Request
 	}
 }
 
+public struct PathFinding_Result
+{
+	public Action<List<Node>, bool> callBack;
+	public List<Node> path;
+	public bool foundPath;
+
+	public PathFinding_Result (Action<List<Node>, bool> _callBack, List<Node> _path, bool _foundPath)
+	{
+		callBack = _callBack;
+		path = _path;
+		foundPath = _foundPath;
+	}
+}
