@@ -132,7 +132,6 @@ GameObject:
   - component: {fileID: 43737984}
   - component: {fileID: 43737983}
   - component: {fileID: 43737982}
-  - component: {fileID: 43737986}
   - component: {fileID: 43737981}
   - component: {fileID: 43737980}
   - component: {fileID: 43737985}
@@ -142,7 +141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &43737980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,8 +157,8 @@ MonoBehaviour:
   startPosition: {fileID: 43737984}
   goalPosition: {fileID: 1850326935}
   pathFound: 0
-  waitingForPath: 0
   updateDelay: 0.1
+  _WaitingForPath: 0
 --- !u!65 &43737981
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -168,8 +167,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 43737979}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -256,22 +255,6 @@ MonoBehaviour:
     OnStopWalking:
       m_PersistentCalls:
         m_Calls: []
---- !u!54 &43737986
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 43737979}
-  serializedVersion: 2
-  m_Mass: 0.0000001
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!1 &69925681
 GameObject:
   m_ObjectHideFlags: 0
@@ -283,7 +266,6 @@ GameObject:
   - component: {fileID: 69925686}
   - component: {fileID: 69925685}
   - component: {fileID: 69925684}
-  - component: {fileID: 69925688}
   - component: {fileID: 69925683}
   - component: {fileID: 69925682}
   - component: {fileID: 69925687}
@@ -293,7 +275,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &69925682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -309,8 +291,8 @@ MonoBehaviour:
   startPosition: {fileID: 69925686}
   goalPosition: {fileID: 1850326935}
   pathFound: 0
-  waitingForPath: 0
   updateDelay: 0.1
+  _WaitingForPath: 0
 --- !u!65 &69925683
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -319,8 +301,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 69925681}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -407,22 +389,6 @@ MonoBehaviour:
     OnStopWalking:
       m_PersistentCalls:
         m_Calls: []
---- !u!54 &69925688
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 69925681}
-  serializedVersion: 2
-  m_Mass: 0.0000001
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!1 &87018871
 GameObject:
   m_ObjectHideFlags: 0
@@ -527,7 +493,6 @@ GameObject:
   - component: {fileID: 194787844}
   - component: {fileID: 194787843}
   - component: {fileID: 194787842}
-  - component: {fileID: 194787846}
   - component: {fileID: 194787841}
   - component: {fileID: 194787840}
   - component: {fileID: 194787845}
@@ -537,7 +502,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &194787840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -553,8 +518,8 @@ MonoBehaviour:
   startPosition: {fileID: 194787844}
   goalPosition: {fileID: 1850326935}
   pathFound: 0
-  waitingForPath: 0
   updateDelay: 0.1
+  _WaitingForPath: 0
 --- !u!65 &194787841
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -563,8 +528,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 194787839}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -651,22 +616,6 @@ MonoBehaviour:
     OnStopWalking:
       m_PersistentCalls:
         m_Calls: []
---- !u!54 &194787846
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 194787839}
-  serializedVersion: 2
-  m_Mass: 0.0000001
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!1 &228343980
 GameObject:
   m_ObjectHideFlags: 0
@@ -771,7 +720,6 @@ GameObject:
   - component: {fileID: 262767715}
   - component: {fileID: 262767714}
   - component: {fileID: 262767713}
-  - component: {fileID: 262767717}
   - component: {fileID: 262767712}
   - component: {fileID: 262767711}
   - component: {fileID: 262767716}
@@ -781,7 +729,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &262767711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -797,8 +745,8 @@ MonoBehaviour:
   startPosition: {fileID: 262767715}
   goalPosition: {fileID: 1850326935}
   pathFound: 0
-  waitingForPath: 0
   updateDelay: 0.1
+  _WaitingForPath: 0
 --- !u!65 &262767712
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -807,8 +755,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 262767710}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -895,22 +843,6 @@ MonoBehaviour:
     OnStopWalking:
       m_PersistentCalls:
         m_Calls: []
---- !u!54 &262767717
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 262767710}
-  serializedVersion: 2
-  m_Mass: 0.0000001
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!1 &270009808
 GameObject:
   m_ObjectHideFlags: 0
@@ -922,7 +854,6 @@ GameObject:
   - component: {fileID: 270009812}
   - component: {fileID: 270009811}
   - component: {fileID: 270009810}
-  - component: {fileID: 270009815}
   - component: {fileID: 270009809}
   - component: {fileID: 270009813}
   - component: {fileID: 270009814}
@@ -941,8 +872,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 270009808}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -1022,8 +953,8 @@ MonoBehaviour:
   startPosition: {fileID: 270009812}
   goalPosition: {fileID: 1850326935}
   pathFound: 0
-  waitingForPath: 0
   updateDelay: 0.1
+  _WaitingForPath: 0
 --- !u!114 &270009814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1031,7 +962,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 270009808}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3be28d3db338c4c43840155c9c53c125, type: 3}
   m_Name: 
@@ -1046,22 +977,6 @@ MonoBehaviour:
     OnStopWalking:
       m_PersistentCalls:
         m_Calls: []
---- !u!54 &270009815
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 270009808}
-  serializedVersion: 2
-  m_Mass: 0.0000001
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!1 &309456887
 GameObject:
   m_ObjectHideFlags: 0
@@ -1073,7 +988,6 @@ GameObject:
   - component: {fileID: 309456892}
   - component: {fileID: 309456891}
   - component: {fileID: 309456890}
-  - component: {fileID: 309456894}
   - component: {fileID: 309456889}
   - component: {fileID: 309456888}
   - component: {fileID: 309456893}
@@ -1083,7 +997,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &309456888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1099,8 +1013,8 @@ MonoBehaviour:
   startPosition: {fileID: 309456892}
   goalPosition: {fileID: 1850326935}
   pathFound: 0
-  waitingForPath: 0
   updateDelay: 0.1
+  _WaitingForPath: 0
 --- !u!65 &309456889
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1109,8 +1023,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 309456887}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -1197,22 +1111,6 @@ MonoBehaviour:
     OnStopWalking:
       m_PersistentCalls:
         m_Calls: []
---- !u!54 &309456894
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 309456887}
-  serializedVersion: 2
-  m_Mass: 0.0000001
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!1 &345002810
 GameObject:
   m_ObjectHideFlags: 0
@@ -1317,7 +1215,6 @@ GameObject:
   - component: {fileID: 449769217}
   - component: {fileID: 449769216}
   - component: {fileID: 449769215}
-  - component: {fileID: 449769219}
   - component: {fileID: 449769214}
   - component: {fileID: 449769213}
   - component: {fileID: 449769218}
@@ -1327,7 +1224,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &449769213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1343,8 +1240,8 @@ MonoBehaviour:
   startPosition: {fileID: 449769217}
   goalPosition: {fileID: 1850326935}
   pathFound: 0
-  waitingForPath: 0
   updateDelay: 0.1
+  _WaitingForPath: 0
 --- !u!65 &449769214
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1353,8 +1250,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 449769212}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -1441,22 +1338,6 @@ MonoBehaviour:
     OnStopWalking:
       m_PersistentCalls:
         m_Calls: []
---- !u!54 &449769219
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 449769212}
-  serializedVersion: 2
-  m_Mass: 0.0000001
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!1 &501916991
 GameObject:
   m_ObjectHideFlags: 0
@@ -1561,7 +1442,6 @@ GameObject:
   - component: {fileID: 701275221}
   - component: {fileID: 701275220}
   - component: {fileID: 701275219}
-  - component: {fileID: 701275223}
   - component: {fileID: 701275218}
   - component: {fileID: 701275217}
   - component: {fileID: 701275222}
@@ -1571,7 +1451,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &701275217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1587,8 +1467,8 @@ MonoBehaviour:
   startPosition: {fileID: 701275221}
   goalPosition: {fileID: 1850326935}
   pathFound: 0
-  waitingForPath: 0
   updateDelay: 0.1
+  _WaitingForPath: 0
 --- !u!65 &701275218
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1597,8 +1477,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 701275216}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -1685,22 +1565,6 @@ MonoBehaviour:
     OnStopWalking:
       m_PersistentCalls:
         m_Calls: []
---- !u!54 &701275223
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 701275216}
-  serializedVersion: 2
-  m_Mass: 0.0000001
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!1 &735814945
 GameObject:
   m_ObjectHideFlags: 0
@@ -1712,7 +1576,6 @@ GameObject:
   - component: {fileID: 735814950}
   - component: {fileID: 735814949}
   - component: {fileID: 735814948}
-  - component: {fileID: 735814952}
   - component: {fileID: 735814947}
   - component: {fileID: 735814946}
   - component: {fileID: 735814951}
@@ -1722,7 +1585,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &735814946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1738,8 +1601,8 @@ MonoBehaviour:
   startPosition: {fileID: 735814950}
   goalPosition: {fileID: 1850326935}
   pathFound: 0
-  waitingForPath: 0
   updateDelay: 0.1
+  _WaitingForPath: 0
 --- !u!65 &735814947
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1748,8 +1611,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 735814945}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -1836,115 +1699,6 @@ MonoBehaviour:
     OnStopWalking:
       m_PersistentCalls:
         m_Calls: []
---- !u!54 &735814952
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 735814945}
-  serializedVersion: 2
-  m_Mass: 0.0000001
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
---- !u!1 &781405223
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 781405224}
-  - component: {fileID: 781405227}
-  - component: {fileID: 781405226}
-  - component: {fileID: 781405225}
-  m_Layer: 8
-  m_Name: Cube (18)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &781405224
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 781405223}
-  m_LocalRotation: {x: -0, y: -0.36786675, z: -0, w: 0.92987853}
-  m_LocalPosition: {x: -23.46, y: 0.5, z: 12.37}
-  m_LocalScale: {x: 1.2593093, y: 1, z: 5.78}
-  m_Children: []
-  m_Father: {fileID: 1349113156}
-  m_RootOrder: 17
-  m_LocalEulerAnglesHint: {x: 0, y: -43.168003, z: 0}
---- !u!65 &781405225
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 781405223}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &781405226
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 781405223}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: ea37d946fb39551478ebee460fb3f971, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!33 &781405227
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 781405223}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &875238485
 GameObject:
   m_ObjectHideFlags: 0
@@ -1956,7 +1710,6 @@ GameObject:
   - component: {fileID: 875238490}
   - component: {fileID: 875238489}
   - component: {fileID: 875238488}
-  - component: {fileID: 875238492}
   - component: {fileID: 875238487}
   - component: {fileID: 875238486}
   - component: {fileID: 875238491}
@@ -1966,7 +1719,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &875238486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1982,8 +1735,8 @@ MonoBehaviour:
   startPosition: {fileID: 875238490}
   goalPosition: {fileID: 1850326935}
   pathFound: 0
-  waitingForPath: 0
   updateDelay: 0.1
+  _WaitingForPath: 0
 --- !u!65 &875238487
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1992,8 +1745,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 875238485}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -2080,22 +1833,6 @@ MonoBehaviour:
     OnStopWalking:
       m_PersistentCalls:
         m_Calls: []
---- !u!54 &875238492
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 875238485}
-  serializedVersion: 2
-  m_Mass: 0.0000001
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!1 &911500514
 GameObject:
   m_ObjectHideFlags: 0
@@ -2199,7 +1936,6 @@ GameObject:
   - component: {fileID: 915787509}
   - component: {fileID: 915787508}
   - component: {fileID: 915787507}
-  - component: {fileID: 915787511}
   - component: {fileID: 915787506}
   - component: {fileID: 915787505}
   - component: {fileID: 915787510}
@@ -2209,7 +1945,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &915787505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2225,8 +1961,8 @@ MonoBehaviour:
   startPosition: {fileID: 915787509}
   goalPosition: {fileID: 1850326935}
   pathFound: 0
-  waitingForPath: 0
   updateDelay: 0.1
+  _WaitingForPath: 0
 --- !u!65 &915787506
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2235,8 +1971,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 915787504}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -2323,22 +2059,6 @@ MonoBehaviour:
     OnStopWalking:
       m_PersistentCalls:
         m_Calls: []
---- !u!54 &915787511
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 915787504}
-  serializedVersion: 2
-  m_Mass: 0.0000001
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!1 &954314742
 GameObject:
   m_ObjectHideFlags: 0
@@ -2536,7 +2256,6 @@ GameObject:
   - component: {fileID: 1015138759}
   - component: {fileID: 1015138758}
   - component: {fileID: 1015138757}
-  - component: {fileID: 1015138761}
   - component: {fileID: 1015138756}
   - component: {fileID: 1015138755}
   - component: {fileID: 1015138760}
@@ -2546,7 +2265,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1015138755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2562,8 +2281,8 @@ MonoBehaviour:
   startPosition: {fileID: 1015138759}
   goalPosition: {fileID: 1850326935}
   pathFound: 0
-  waitingForPath: 0
   updateDelay: 0.1
+  _WaitingForPath: 0
 --- !u!65 &1015138756
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2572,8 +2291,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1015138754}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -2660,22 +2379,6 @@ MonoBehaviour:
     OnStopWalking:
       m_PersistentCalls:
         m_Calls: []
---- !u!54 &1015138761
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1015138754}
-  serializedVersion: 2
-  m_Mass: 0.0000001
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!1 &1045693257
 GameObject:
   m_ObjectHideFlags: 0
@@ -2687,7 +2390,6 @@ GameObject:
   - component: {fileID: 1045693262}
   - component: {fileID: 1045693261}
   - component: {fileID: 1045693260}
-  - component: {fileID: 1045693264}
   - component: {fileID: 1045693259}
   - component: {fileID: 1045693258}
   - component: {fileID: 1045693263}
@@ -2697,7 +2399,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1045693258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2713,8 +2415,8 @@ MonoBehaviour:
   startPosition: {fileID: 1045693262}
   goalPosition: {fileID: 1850326935}
   pathFound: 0
-  waitingForPath: 0
   updateDelay: 0.1
+  _WaitingForPath: 0
 --- !u!65 &1045693259
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2723,8 +2425,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1045693257}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -2811,22 +2513,6 @@ MonoBehaviour:
     OnStopWalking:
       m_PersistentCalls:
         m_Calls: []
---- !u!54 &1045693264
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1045693257}
-  serializedVersion: 2
-  m_Mass: 0.0000001
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!1 &1050226224
 GameObject:
   m_ObjectHideFlags: 0
@@ -2838,7 +2524,6 @@ GameObject:
   - component: {fileID: 1050226229}
   - component: {fileID: 1050226228}
   - component: {fileID: 1050226227}
-  - component: {fileID: 1050226231}
   - component: {fileID: 1050226226}
   - component: {fileID: 1050226225}
   - component: {fileID: 1050226230}
@@ -2848,7 +2533,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1050226225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2864,8 +2549,8 @@ MonoBehaviour:
   startPosition: {fileID: 1050226229}
   goalPosition: {fileID: 1850326935}
   pathFound: 0
-  waitingForPath: 0
   updateDelay: 0.1
+  _WaitingForPath: 0
 --- !u!65 &1050226226
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2874,8 +2559,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1050226224}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -2962,22 +2647,6 @@ MonoBehaviour:
     OnStopWalking:
       m_PersistentCalls:
         m_Calls: []
---- !u!54 &1050226231
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1050226224}
-  serializedVersion: 2
-  m_Mass: 0.0000001
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!1 &1056062481
 GameObject:
   m_ObjectHideFlags: 0
@@ -2989,7 +2658,6 @@ GameObject:
   - component: {fileID: 1056062486}
   - component: {fileID: 1056062485}
   - component: {fileID: 1056062484}
-  - component: {fileID: 1056062488}
   - component: {fileID: 1056062483}
   - component: {fileID: 1056062482}
   - component: {fileID: 1056062487}
@@ -2999,7 +2667,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1056062482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3015,8 +2683,8 @@ MonoBehaviour:
   startPosition: {fileID: 1056062486}
   goalPosition: {fileID: 1850326935}
   pathFound: 0
-  waitingForPath: 0
   updateDelay: 0.1
+  _WaitingForPath: 0
 --- !u!65 &1056062483
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3025,8 +2693,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1056062481}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -3113,22 +2781,6 @@ MonoBehaviour:
     OnStopWalking:
       m_PersistentCalls:
         m_Calls: []
---- !u!54 &1056062488
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1056062481}
-  serializedVersion: 2
-  m_Mass: 0.0000001
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!1 &1079679789
 GameObject:
   m_ObjectHideFlags: 0
@@ -3140,7 +2792,6 @@ GameObject:
   - component: {fileID: 1079679794}
   - component: {fileID: 1079679793}
   - component: {fileID: 1079679792}
-  - component: {fileID: 1079679796}
   - component: {fileID: 1079679791}
   - component: {fileID: 1079679790}
   - component: {fileID: 1079679795}
@@ -3150,7 +2801,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1079679790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3166,8 +2817,8 @@ MonoBehaviour:
   startPosition: {fileID: 1079679794}
   goalPosition: {fileID: 1850326935}
   pathFound: 0
-  waitingForPath: 0
   updateDelay: 0.1
+  _WaitingForPath: 0
 --- !u!65 &1079679791
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3176,8 +2827,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1079679789}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -3264,22 +2915,6 @@ MonoBehaviour:
     OnStopWalking:
       m_PersistentCalls:
         m_Calls: []
---- !u!54 &1079679796
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1079679789}
-  serializedVersion: 2
-  m_Mass: 0.0000001
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!1 &1084659317
 GameObject:
   m_ObjectHideFlags: 0
@@ -3291,7 +2926,6 @@ GameObject:
   - component: {fileID: 1084659322}
   - component: {fileID: 1084659321}
   - component: {fileID: 1084659320}
-  - component: {fileID: 1084659324}
   - component: {fileID: 1084659319}
   - component: {fileID: 1084659318}
   - component: {fileID: 1084659323}
@@ -3301,7 +2935,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1084659318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3317,8 +2951,8 @@ MonoBehaviour:
   startPosition: {fileID: 1084659322}
   goalPosition: {fileID: 1850326935}
   pathFound: 0
-  waitingForPath: 0
   updateDelay: 0.1
+  _WaitingForPath: 0
 --- !u!65 &1084659319
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3327,8 +2961,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1084659317}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -3415,22 +3049,6 @@ MonoBehaviour:
     OnStopWalking:
       m_PersistentCalls:
         m_Calls: []
---- !u!54 &1084659324
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1084659317}
-  serializedVersion: 2
-  m_Mass: 0.0000001
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!1 &1101856509
 GameObject:
   m_ObjectHideFlags: 0
@@ -3535,7 +3153,6 @@ GameObject:
   - component: {fileID: 1143998414}
   - component: {fileID: 1143998413}
   - component: {fileID: 1143998412}
-  - component: {fileID: 1143998416}
   - component: {fileID: 1143998411}
   - component: {fileID: 1143998410}
   - component: {fileID: 1143998415}
@@ -3545,7 +3162,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1143998410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3561,8 +3178,8 @@ MonoBehaviour:
   startPosition: {fileID: 1143998414}
   goalPosition: {fileID: 1850326935}
   pathFound: 0
-  waitingForPath: 0
   updateDelay: 0.1
+  _WaitingForPath: 0
 --- !u!65 &1143998411
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3571,8 +3188,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1143998409}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -3659,22 +3276,6 @@ MonoBehaviour:
     OnStopWalking:
       m_PersistentCalls:
         m_Calls: []
---- !u!54 &1143998416
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1143998409}
-  serializedVersion: 2
-  m_Mass: 0.0000001
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!1 &1146260151
 GameObject:
   m_ObjectHideFlags: 0
@@ -3686,7 +3287,6 @@ GameObject:
   - component: {fileID: 1146260156}
   - component: {fileID: 1146260155}
   - component: {fileID: 1146260154}
-  - component: {fileID: 1146260158}
   - component: {fileID: 1146260153}
   - component: {fileID: 1146260152}
   - component: {fileID: 1146260157}
@@ -3696,7 +3296,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1146260152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3712,8 +3312,8 @@ MonoBehaviour:
   startPosition: {fileID: 1146260156}
   goalPosition: {fileID: 1850326935}
   pathFound: 0
-  waitingForPath: 0
   updateDelay: 0.1
+  _WaitingForPath: 0
 --- !u!65 &1146260153
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3722,8 +3322,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1146260151}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -3810,22 +3410,6 @@ MonoBehaviour:
     OnStopWalking:
       m_PersistentCalls:
         m_Calls: []
---- !u!54 &1146260158
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1146260151}
-  serializedVersion: 2
-  m_Mass: 0.0000001
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!1 &1168039963
 GameObject:
   m_ObjectHideFlags: 0
@@ -3837,7 +3421,6 @@ GameObject:
   - component: {fileID: 1168039968}
   - component: {fileID: 1168039967}
   - component: {fileID: 1168039966}
-  - component: {fileID: 1168039970}
   - component: {fileID: 1168039965}
   - component: {fileID: 1168039964}
   - component: {fileID: 1168039969}
@@ -3847,7 +3430,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1168039964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3863,8 +3446,8 @@ MonoBehaviour:
   startPosition: {fileID: 1168039968}
   goalPosition: {fileID: 1850326935}
   pathFound: 0
-  waitingForPath: 0
   updateDelay: 0.1
+  _WaitingForPath: 0
 --- !u!65 &1168039965
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3873,8 +3456,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1168039963}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -3961,22 +3544,6 @@ MonoBehaviour:
     OnStopWalking:
       m_PersistentCalls:
         m_Calls: []
---- !u!54 &1168039970
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1168039963}
-  serializedVersion: 2
-  m_Mass: 0.0000001
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!1 &1188415080
 GameObject:
   m_ObjectHideFlags: 0
@@ -4536,7 +4103,7 @@ Transform:
   m_LocalScale: {x: 1.4000007, y: 1, z: 3.9345582}
   m_Children: []
   m_Father: {fileID: 1349113156}
-  m_RootOrder: 20
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1307418792
 BoxCollider:
@@ -4609,7 +4176,6 @@ GameObject:
   - component: {fileID: 1324405253}
   - component: {fileID: 1324405252}
   - component: {fileID: 1324405251}
-  - component: {fileID: 1324405255}
   - component: {fileID: 1324405250}
   - component: {fileID: 1324405249}
   - component: {fileID: 1324405254}
@@ -4619,7 +4185,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1324405249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4635,8 +4201,8 @@ MonoBehaviour:
   startPosition: {fileID: 1324405253}
   goalPosition: {fileID: 1850326935}
   pathFound: 0
-  waitingForPath: 0
   updateDelay: 0.1
+  _WaitingForPath: 0
 --- !u!65 &1324405250
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4645,8 +4211,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1324405248}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -4733,22 +4299,6 @@ MonoBehaviour:
     OnStopWalking:
       m_PersistentCalls:
         m_Calls: []
---- !u!54 &1324405255
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1324405248}
-  serializedVersion: 2
-  m_Mass: 0.0000001
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!1 &1347528232
 GameObject:
   m_ObjectHideFlags: 0
@@ -4760,7 +4310,6 @@ GameObject:
   - component: {fileID: 1347528237}
   - component: {fileID: 1347528236}
   - component: {fileID: 1347528235}
-  - component: {fileID: 1347528239}
   - component: {fileID: 1347528234}
   - component: {fileID: 1347528233}
   - component: {fileID: 1347528238}
@@ -4770,7 +4319,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1347528233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4786,8 +4335,8 @@ MonoBehaviour:
   startPosition: {fileID: 1347528237}
   goalPosition: {fileID: 1850326935}
   pathFound: 0
-  waitingForPath: 0
   updateDelay: 0.1
+  _WaitingForPath: 0
 --- !u!65 &1347528234
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4796,8 +4345,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1347528232}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -4884,22 +4433,6 @@ MonoBehaviour:
     OnStopWalking:
       m_PersistentCalls:
         m_Calls: []
---- !u!54 &1347528239
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1347528232}
-  serializedVersion: 2
-  m_Mass: 0.0000001
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!1 &1349113155
 GameObject:
   m_ObjectHideFlags: 0
@@ -4944,7 +4477,6 @@ Transform:
   - {fileID: 1573817118}
   - {fileID: 1496625604}
   - {fileID: 1295584991}
-  - {fileID: 781405224}
   - {fileID: 1619207333}
   - {fileID: 2121651633}
   - {fileID: 1307418791}
@@ -5055,7 +4587,6 @@ GameObject:
   - component: {fileID: 1413096856}
   - component: {fileID: 1413096855}
   - component: {fileID: 1413096854}
-  - component: {fileID: 1413096858}
   - component: {fileID: 1413096853}
   - component: {fileID: 1413096852}
   - component: {fileID: 1413096857}
@@ -5065,7 +4596,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1413096852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5081,8 +4612,8 @@ MonoBehaviour:
   startPosition: {fileID: 1413096856}
   goalPosition: {fileID: 1850326935}
   pathFound: 0
-  waitingForPath: 0
   updateDelay: 0.1
+  _WaitingForPath: 0
 --- !u!65 &1413096853
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5091,8 +4622,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1413096851}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -5179,22 +4710,6 @@ MonoBehaviour:
     OnStopWalking:
       m_PersistentCalls:
         m_Calls: []
---- !u!54 &1413096858
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1413096851}
-  serializedVersion: 2
-  m_Mass: 0.0000001
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!1 &1443878011
 GameObject:
   m_ObjectHideFlags: 0
@@ -5299,7 +4814,6 @@ GameObject:
   - component: {fileID: 1449608977}
   - component: {fileID: 1449608976}
   - component: {fileID: 1449608975}
-  - component: {fileID: 1449608979}
   - component: {fileID: 1449608974}
   - component: {fileID: 1449608973}
   - component: {fileID: 1449608978}
@@ -5309,7 +4823,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1449608973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5325,8 +4839,8 @@ MonoBehaviour:
   startPosition: {fileID: 1449608977}
   goalPosition: {fileID: 1850326935}
   pathFound: 0
-  waitingForPath: 0
   updateDelay: 0.1
+  _WaitingForPath: 0
 --- !u!65 &1449608974
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5335,8 +4849,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1449608972}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -5423,22 +4937,6 @@ MonoBehaviour:
     OnStopWalking:
       m_PersistentCalls:
         m_Calls: []
---- !u!54 &1449608979
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1449608972}
-  serializedVersion: 2
-  m_Mass: 0.0000001
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!1 &1488001391
 GameObject:
   m_ObjectHideFlags: 0
@@ -5450,7 +4948,6 @@ GameObject:
   - component: {fileID: 1488001396}
   - component: {fileID: 1488001395}
   - component: {fileID: 1488001394}
-  - component: {fileID: 1488001398}
   - component: {fileID: 1488001393}
   - component: {fileID: 1488001392}
   - component: {fileID: 1488001397}
@@ -5460,7 +4957,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1488001392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5476,8 +4973,8 @@ MonoBehaviour:
   startPosition: {fileID: 1488001396}
   goalPosition: {fileID: 1850326935}
   pathFound: 0
-  waitingForPath: 0
   updateDelay: 0.1
+  _WaitingForPath: 0
 --- !u!65 &1488001393
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5486,8 +4983,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1488001391}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -5574,22 +5071,6 @@ MonoBehaviour:
     OnStopWalking:
       m_PersistentCalls:
         m_Calls: []
---- !u!54 &1488001398
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1488001391}
-  serializedVersion: 2
-  m_Mass: 0.0000001
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!1 &1496625603
 GameObject:
   m_ObjectHideFlags: 0
@@ -5694,7 +5175,6 @@ GameObject:
   - component: {fileID: 1544574540}
   - component: {fileID: 1544574539}
   - component: {fileID: 1544574538}
-  - component: {fileID: 1544574542}
   - component: {fileID: 1544574537}
   - component: {fileID: 1544574536}
   - component: {fileID: 1544574541}
@@ -5704,7 +5184,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1544574536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5720,8 +5200,8 @@ MonoBehaviour:
   startPosition: {fileID: 1544574540}
   goalPosition: {fileID: 1850326935}
   pathFound: 0
-  waitingForPath: 0
   updateDelay: 0.1
+  _WaitingForPath: 0
 --- !u!65 &1544574537
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5730,8 +5210,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1544574535}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -5818,22 +5298,6 @@ MonoBehaviour:
     OnStopWalking:
       m_PersistentCalls:
         m_Calls: []
---- !u!54 &1544574542
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1544574535}
-  serializedVersion: 2
-  m_Mass: 0.0000001
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!1 &1566043656
 GameObject:
   m_ObjectHideFlags: 0
@@ -6051,7 +5515,7 @@ Transform:
   m_LocalScale: {x: 1.2999, y: 1, z: 5.0138397}
   m_Children: []
   m_Father: {fileID: 1349113156}
-  m_RootOrder: 18
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!65 &1619207334
 BoxCollider:
@@ -6300,7 +5764,6 @@ GameObject:
   - component: {fileID: 1774908383}
   - component: {fileID: 1774908382}
   - component: {fileID: 1774908381}
-  - component: {fileID: 1774908385}
   - component: {fileID: 1774908380}
   - component: {fileID: 1774908379}
   - component: {fileID: 1774908384}
@@ -6310,7 +5773,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1774908379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6326,8 +5789,8 @@ MonoBehaviour:
   startPosition: {fileID: 1774908383}
   goalPosition: {fileID: 1850326935}
   pathFound: 0
-  waitingForPath: 0
   updateDelay: 0.1
+  _WaitingForPath: 0
 --- !u!65 &1774908380
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6336,8 +5799,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1774908378}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -6424,22 +5887,6 @@ MonoBehaviour:
     OnStopWalking:
       m_PersistentCalls:
         m_Calls: []
---- !u!54 &1774908385
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1774908378}
-  serializedVersion: 2
-  m_Mass: 0.0000001
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!1 &1807456587
 GameObject:
   m_ObjectHideFlags: 0
@@ -6451,7 +5898,6 @@ GameObject:
   - component: {fileID: 1807456592}
   - component: {fileID: 1807456591}
   - component: {fileID: 1807456590}
-  - component: {fileID: 1807456594}
   - component: {fileID: 1807456589}
   - component: {fileID: 1807456588}
   - component: {fileID: 1807456593}
@@ -6461,7 +5907,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1807456588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6477,8 +5923,8 @@ MonoBehaviour:
   startPosition: {fileID: 1807456592}
   goalPosition: {fileID: 1850326935}
   pathFound: 0
-  waitingForPath: 0
   updateDelay: 0.1
+  _WaitingForPath: 0
 --- !u!65 &1807456589
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6487,8 +5933,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1807456587}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -6575,22 +6021,6 @@ MonoBehaviour:
     OnStopWalking:
       m_PersistentCalls:
         m_Calls: []
---- !u!54 &1807456594
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1807456587}
-  serializedVersion: 2
-  m_Mass: 0.0000001
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!1 &1850326931
 GameObject:
   m_ObjectHideFlags: 0
@@ -6695,7 +6125,6 @@ GameObject:
   - component: {fileID: 1898177317}
   - component: {fileID: 1898177316}
   - component: {fileID: 1898177315}
-  - component: {fileID: 1898177319}
   - component: {fileID: 1898177314}
   - component: {fileID: 1898177313}
   - component: {fileID: 1898177318}
@@ -6705,7 +6134,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1898177313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6721,8 +6150,8 @@ MonoBehaviour:
   startPosition: {fileID: 1898177317}
   goalPosition: {fileID: 1850326935}
   pathFound: 0
-  waitingForPath: 0
   updateDelay: 0.1
+  _WaitingForPath: 0
 --- !u!65 &1898177314
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6731,8 +6160,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1898177312}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -6819,22 +6248,6 @@ MonoBehaviour:
     OnStopWalking:
       m_PersistentCalls:
         m_Calls: []
---- !u!54 &1898177319
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1898177312}
-  serializedVersion: 2
-  m_Mass: 0.0000001
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!1 &2121651632
 GameObject:
   m_ObjectHideFlags: 0
@@ -6866,7 +6279,7 @@ Transform:
   m_LocalScale: {x: 1.4, y: 1, z: 5.78}
   m_Children: []
   m_Father: {fileID: 1349113156}
-  m_RootOrder: 19
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: -125, z: 0}
 --- !u!65 &2121651634
 BoxCollider:

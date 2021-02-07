@@ -160,11 +160,14 @@ public class PathFinding : MonoBehaviour
 			// Build the found path list from Goal to Start
 			path = BuildPath(request);
 
-			// Reverse the found path to be from Start to Goal
-			path.Reverse();
+			if (path.Count > 1)
+			{
+				// Reverse the found path to be from Start to Goal
+				path.Reverse();
 
-			// Simplify the path to take up less space and only track pivot points
-			path = SimplifyPath(path);
+				// Simplify the path to take up less space and only track pivot points
+				path = SimplifyPath(path);
+			}
 		}
 		else
 		{

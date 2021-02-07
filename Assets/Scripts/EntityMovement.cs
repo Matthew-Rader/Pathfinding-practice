@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-// EntityMovement requires a Rigidbody component to function
-[RequireComponent(typeof(Rigidbody))]
-
 public class EntityMovement : MonoBehaviour
 {
 	private Rigidbody entityRigi;
 
 	private Vector3 velocitySmoothing;
+
+	private Vector3 currentEntityVelocity = Vector3.zero;
 
 	private bool entityMovingLastFrame = false;
 
@@ -81,7 +80,7 @@ public class EntityMovement : MonoBehaviour
 	public void StopMoving ()
 	{
 		CanMove(false);
-		entityRigi.velocity = Vector3.zero;
+		currentEntityVelocity = Vector3.zero;
 	}
 
 	/// <summary>
@@ -95,36 +94,32 @@ public class EntityMovement : MonoBehaviour
 
 	private void MoveEntity () 
 	{
-		if (entityRigi != null)
-        {
-			Vector3 currentEntityVelocity = entityRigi.velocity;
-			Vector3 newEntityVelocity;
+		Vector3 newEntityVelocity;
 
-			Vector3 targetVelocity = targetMovementDir * movementSpeed;
+		Vector3 targetVelocity = targetMovementDir * movementSpeed;
 
-			// Determine if we are accelerating or decelerating
-			if (targetMovementDir != Vector3.zero) // ACCELERATION
+		// Determine if we are accelerating or decelerating
+		if (targetMovementDir != Vector3.zero) // ACCELERATION
+		{
+			if (!entityMovingLastFrame)
 			{
-				if (!entityMovingLastFrame)
-				{
-					events.OnStartWalking.Invoke();
-					entityMovingLastFrame = true;
-				}
-
-				newEntityVelocity = Vector3.SmoothDamp(currentEntityVelocity, targetVelocity, ref velocitySmoothing, accelerationTime);
-			}
-			else // DECELERATION
-			{
-				if (entityMovingLastFrame)
-				{
-					events.OnStopWalking.Invoke();
-					entityMovingLastFrame = false;
-				}
-
-				newEntityVelocity = Vector3.SmoothDamp(currentEntityVelocity, targetVelocity, ref velocitySmoothing, decelerationTime);
+				events.OnStartWalking.Invoke();
+				entityMovingLastFrame = true;
 			}
 
-			entityRigi.velocity = newEntityVelocity;
-		} 
+			newEntityVelocity = Vector3.SmoothDamp(currentEntityVelocity, targetVelocity, ref velocitySmoothing, accelerationTime);
+		}
+		else // DECELERATION
+		{
+			if (entityMovingLastFrame)
+			{
+				events.OnStopWalking.Invoke();
+				entityMovingLastFrame = false;
+			}
+
+			newEntityVelocity = Vector3.SmoothDamp(currentEntityVelocity, targetVelocity, ref velocitySmoothing, decelerationTime);
+		}
+
+		transform.position += newEntityVelocity * Time.deltaTime;
 	}
 }

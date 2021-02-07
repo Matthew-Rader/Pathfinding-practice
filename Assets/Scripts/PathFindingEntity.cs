@@ -1,25 +1,36 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 // A EntityMovement component is needed to make the objects move
 [RequireComponent(typeof(EntityMovement))]
 
 public class PathFindingEntity : MonoBehaviour
 {
+	// Start position when searching for a path
 	[HideInInspector] public Transform startPosition;
-	public Transform goalPosition;
-	private Transform goalPositionLastUpdate;
 
+	// Goal position when searching for a path
+	public Transform goalPosition;
+
+	// Last known Goal position to check if we need to research for the path
+	private Vector3 goalPositionLastUpdate;
+
+	// Found path
 	[HideInInspector] public List<Node> path = new List<Node>();
 	[HideInInspector] public bool pathFound = false;
 
-	[HideInInspector] public bool waitingForPath = false;
+	// PathFinding delay length and timers
 	public float updateDelay = 0.5f;
 	private float updateDelayTimer = 0.0f;
 
+	[HideInInspector] public bool _WaitingForPath = false;
+
+	// EntityMovement is in charge of moveing the entity, we simply pass it a direction to a waypoint node
 	private EntityMovement entityMovement;
 
+	// Coroutine variable so we can stop and start following a path
 	private Coroutine followPathCoroutine;
 
 	private void Start ()
@@ -27,24 +38,25 @@ public class PathFindingEntity : MonoBehaviour
 		startPosition = GetComponent<Transform>();
 		entityMovement = GetComponent<EntityMovement>();
 
-		goalPositionLastUpdate = goalPosition;
+		goalPositionLastUpdate = goalPosition.position;
 
 		// Find our initial path
-		waitingForPath = true;
+		_WaitingForPath = true;
 		PathFinding.RequestPath(startPosition, goalPosition, UpdatePathData);
 	}
 
 	private void Update ()
 	{
-		if (!waitingForPath)
+		if (!_WaitingForPath)
 		{
 			updateDelayTimer += Time.deltaTime;
 
 			if (updateDelayTimer > updateDelay)
 			{
-				if (goalPositionLastUpdate.position != goalPosition.position)
+				if (goalPositionLastUpdate != goalPosition.position)
 				{
-					waitingForPath = true;
+					_WaitingForPath = true;
+					goalPositionLastUpdate = goalPosition.position;
 					PathFinding.RequestPath(startPosition, goalPosition, UpdatePathData);
 				}
 
@@ -57,7 +69,7 @@ public class PathFindingEntity : MonoBehaviour
 	{
 		path = _path;
 		pathFound = _pathFound;
-		waitingForPath = false;
+		_WaitingForPath = false;
 
 		// Stop following the revious path
 		if (followPathCoroutine != null)
@@ -66,10 +78,13 @@ public class PathFindingEntity : MonoBehaviour
 			followPathCoroutine = null;
 		}
 
-		if (path.Count > 1)
+		if (pathFound)
 		{
-			// Start following the new path
-			followPathCoroutine = StartCoroutine(FollowPath());
+			if (path.Count > 1)
+			{
+				// Start following the new path
+				followPathCoroutine = StartCoroutine(FollowPath());
+			}
 		}
 		else
 		{
